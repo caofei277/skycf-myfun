@@ -1,0 +1,26 @@
+{
+  "name": "@skycf/myfun",
+  "version": "0.1.0",
+  "description": "我的函数库",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "test": "mocha --reporter spec",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/sky1987_admin/myfun.git"
+  },
+  "keywords": [
+    "myfun"
+  ],
+  "author": "skycf <534900599@qq.com>",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.2"
+  }
+}
