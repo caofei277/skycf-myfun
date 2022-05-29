@@ -12,3 +12,4 @@ export declare function myGetStorage(key: string): any;
  * @param key
  */
 export declare function myDelStorage(key: string): boolean;
+export declare function req(url: any, params?: object, reqType?: string, alertMsg?: boolean): Promise<unknown>;
