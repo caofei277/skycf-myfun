@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.myRequest = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+var axios_1 = require("axios");
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -70,33 +71,20 @@ function myRequest(url, params, reqType) {
     if (params === void 0) { params = {}; }
     if (reqType === void 0) { reqType = 'post'; }
     // 发送请求
-    // return new Promise((resolve, reject) => {
-    //
-    //   let promise;
-    //
-    //   promise = axios({
-    //     method: reqType,
-    //     url: url,
-    //     data: params
-    //   });
-    //
-    //   promise.then((response: { data: any; }) => {
-    //     //成功的回调函数
-    //     resolve(response.data)
-    //   }).catch((error: any) => {
-    //     //失败的回调函数
-    //     reject(error)
-    //   })
-    // })
-    // axios({
-    //   method: 'post',
-    //   url: '/user/12345',
-    //   data: {
-    //     firstName: 'Fred',
-    //     lastName: 'Flintstone'
-    //   }
-    // });
-    // console.log('这是request方法')
-    return '这是request方法';
+    return new Promise(function (resolve, reject) {
+        var promise;
+        promise = (0, axios_1.default)({
+            method: reqType,
+            url: url,
+            data: params
+        });
+        promise.then(function (response) {
+            //成功的回调函数
+            resolve(response.data);
+        }).catch(function (error) {
+            //失败的回调函数
+            reject(error);
+        });
+    });
 }
 exports.myRequest = myRequest;
