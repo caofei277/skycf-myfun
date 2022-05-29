@@ -22,4 +22,4 @@ export declare function myRequest(url: any, params?: object, reqType?: string): 
 /**
  * test
  */
-export declare function test(): void;
+export declare function test(): boolean;

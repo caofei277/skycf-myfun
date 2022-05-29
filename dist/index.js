@@ -104,5 +104,6 @@ exports.myRequest = myRequest;
  */
 function test() {
     console.log('这是测试方法');
+    return true;
 }
 exports.test = test;
