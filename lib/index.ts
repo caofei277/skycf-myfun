@@ -115,3 +115,12 @@ export function test(){
   console.log('这是测试方法')
   return true;
 }
+
+
+/**
+ * localstorage 删除
+ * @param key
+ */
+export function mytest(key: string) {
+  return key;
+}
