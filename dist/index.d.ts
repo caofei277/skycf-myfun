@@ -23,3 +23,8 @@ export declare function myRequest(url: any, params?: object, reqType?: string): 
  * test
  */
 export declare function test(): boolean;
+/**
+ * localstorage 删除
+ * @param key
+ */
+export declare function mytest(key: string): string;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.test = exports.myRequest = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.mytest = exports.test = exports.myRequest = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -107,3 +107,11 @@ function test() {
     return true;
 }
 exports.test = test;
+/**
+ * localstorage 删除
+ * @param key
+ */
+function mytest(key) {
+    return key;
+}
+exports.mytest = mytest;
