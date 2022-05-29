@@ -77,35 +77,25 @@ export function myDelStorage(key: string) {
  * @param params  请求参数
  * @param reqType 请求方法
  */
-export function myRequest(url: any, params:object = {}, reqType = 'post') : string{
+export function myRequest(url: any, params:object = {}, reqType = 'post') {
   // 发送请求
-  // return new Promise((resolve, reject) => {
-  //
-  //   let promise;
-  //
-  //   promise = axios({
-  //     method: reqType,
-  //     url: url,
-  //     data: params
-  //   });
-  //
-  //   promise.then((response: { data: any; }) => {
-  //     //成功的回调函数
-  //     resolve(response.data)
-  //   }).catch((error: any) => {
-  //     //失败的回调函数
-  //     reject(error)
-  //   })
-  // })
-  // axios({
-  //   method: 'post',
-  //   url: '/user/12345',
-  //   data: {
-  //     firstName: 'Fred',
-  //     lastName: 'Flintstone'
-  //   }
-  // });
-  // console.log('这是request方法')
-  return '这是request方法';
+  return new Promise((resolve, reject) => {
+
+    let promise;
+
+    promise = axios({
+      method: reqType,
+      url: url,
+      data: params
+    });
+
+    promise.then((response: { data: any; }) => {
+      //成功的回调函数
+      resolve(response.data)
+    }).catch((error: any) => {
+      //失败的回调函数
+      reject(error)
+    })
+  })
 }
 
