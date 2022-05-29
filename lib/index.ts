@@ -53,3 +53,14 @@ export function myGetStorage(key: string)  {
   }
 
 }
+
+
+/**
+ * localstorage 删除
+ * @param key
+ */
+export function myDelStorage(key: string) {
+  localStorage.removeItem(key);
+  localStorage.removeItem(`${key}__expires__`);
+  return true;
+}
