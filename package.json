@@ -10,7 +10,7 @@
     "build": "tsc",
     "mypub1": "npm version major && npm run build && npm publish && git add . && git commit -m",
     "mypub2": "npm version minor && npm run build && npm publish && git add . && git commit -m",
-    "mypub3": "npm version patch && npm run build && npm publish && git add . && git commit -m"
+    "mypub3": "git add . && git commit -m '修复一些问题' && npm version patch && npm run build && npm publish && git add . && git commit -m"
   },
   "repository": {
     "type": "git",

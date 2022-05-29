@@ -18,7 +18,7 @@ export declare function myDelStorage(key: string): boolean;
  * @param params  请求参数
  * @param reqType 请求方法
  */
-export declare function myRequest(url: any, params?: object, reqType?: string): void;
+export declare function myRequest(url: any, params?: object, reqType?: string): string;
 /**
  * test
  */

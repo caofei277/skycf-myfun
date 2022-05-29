@@ -96,14 +96,15 @@ function myRequest(url, params, reqType) {
     //     lastName: 'Flintstone'
     //   }
     // });
-    console.log('这是request方法');
+    // console.log('这是request方法')
+    return '这是request方法';
 }
 exports.myRequest = myRequest;
 /**
  * test
  */
 function test() {
-    console.log('这是测试方法');
+    // console.log('这是测试方法')
     return true;
 }
 exports.test = test;

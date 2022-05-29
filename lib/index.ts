@@ -77,7 +77,7 @@ export function myDelStorage(key: string) {
  * @param params  请求参数
  * @param reqType 请求方法
  */
-export function myRequest(url: any, params:object = {}, reqType = 'post') {
+export function myRequest(url: any, params:object = {}, reqType = 'post') : string{
   // 发送请求
   // return new Promise((resolve, reject) => {
   //
@@ -105,14 +105,15 @@ export function myRequest(url: any, params:object = {}, reqType = 'post') {
   //     lastName: 'Flintstone'
   //   }
   // });
-  console.log('这是request方法')
+  // console.log('这是request方法')
+  return '这是request方法';
 }
 
 /**
  * test
  */
-export function test(){
-  console.log('这是测试方法')
+export function test() : boolean{
+  // console.log('这是测试方法')
   return true;
 }
 
@@ -121,6 +122,6 @@ export function test(){
  * localstorage 删除
  * @param key
  */
-export function mytest(key: string) {
+export function mytest(key: string) : string {
   return key;
 }
