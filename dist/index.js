@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.req = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.request = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 /**
  * localstorage 存储方法(可设置有效期)
@@ -61,47 +61,30 @@ function myDelStorage(key) {
     return true;
 }
 exports.myDelStorage = myDelStorage;
-function req(url, params, reqType, alertMsg) {
-    if (params === void 0) { params = { openid: '', token_id: '' }; }
+/**
+ * 公共axios请求方法
+ * @param url  请求路由
+ * @param params  请求参数
+ * @param reqType 请求方法
+ */
+function request(url, params, reqType) {
+    if (params === void 0) { params = {}; }
     if (reqType === void 0) { reqType = 'post'; }
-    if (alertMsg === void 0) { alertMsg = true; }
     // 发送请求
     return new Promise(function (resolve, reject) {
         var promise;
         promise = (0, axios_1.default)({
-            method: 'post',
+            method: reqType,
             url: url,
             data: params
         });
         promise.then(function (response) {
             //成功的回调函数
-            if (response.data.code === 3 || response.data.code === 5) {
-                // if(process.env.VUE_APP_ENVIRONMENT != 'local' || true ){
-                // ElMessage.warning(response.data.msg)
-                // router.push('/login/login')
-                return;
-                // }
-            }
-            else if (response.data.code !== 200 && alertMsg) {
-                // ElMessage.warning(response.data.msg)
-            }
-            else if (response.data.code === 200 && response.data.msg !== '') {
-                // ElMessage.success(response.data.msg)
-            }
             resolve(response.data);
         }).catch(function (error) {
             //失败的回调函数
             reject(error);
-            // if(viteEnv.VITE_NODE_ENV != 'local'){
-            //   // console.log('请求失败，去登陆');
-            //   // setTimeout(() => {
-            //   //可能登录失败 跳转登录地址
-            //   // router.push("/" + encodeURIComponent(''));
-            //   alert('系统繁忙，请稍后重试');
-            //   //失败的回调函数
-            //   reject(error)
-            // }
         });
     });
 }
-exports.req = req;
+exports.request = request;

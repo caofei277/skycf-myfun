@@ -12,4 +12,10 @@ export declare function myGetStorage(key: string): any;
  * @param key
  */
 export declare function myDelStorage(key: string): boolean;
-export declare function req(url: any, params?: object, reqType?: string, alertMsg?: boolean): Promise<unknown>;
+/**
+ * 公共axios请求方法
+ * @param url  请求路由
+ * @param params  请求参数
+ * @param reqType 请求方法
+ */
+export declare function request(url: any, params?: object, reqType?: string): Promise<unknown>;

@@ -71,46 +71,30 @@ export function myDelStorage(key: string) {
 
 
 
-export function req(url: any, params:object = {openid: '', token_id: ''}, reqType = 'post', alertMsg = true){
+/**
+ * 公共axios请求方法
+ * @param url  请求路由
+ * @param params  请求参数
+ * @param reqType 请求方法
+ */
+export function request(url: any, params:object = {}, reqType = 'post'){
   // 发送请求
   return new Promise((resolve, reject) => {
 
     let promise;
 
     promise = axios({
-      method: 'post',
+      method: reqType,
       url: url,
       data: params
     });
 
-
-
     promise.then((response: { data: any; }) => {
       //成功的回调函数
-      if(response.data.code === 3 || response.data.code === 5){
-        // if(process.env.VUE_APP_ENVIRONMENT != 'local' || true ){
-        // ElMessage.warning(response.data.msg)
-        // router.push('/login/login')
-        return;
-        // }
-      }else if(response.data.code !== 200 && alertMsg){
-        // ElMessage.warning(response.data.msg)
-      }else if(response.data.code === 200 && response.data.msg !== ''){
-        // ElMessage.success(response.data.msg)
-      }
       resolve(response.data)
     }).catch((error: any) => {
       //失败的回调函数
       reject(error)
-      // if(viteEnv.VITE_NODE_ENV != 'local'){
-      //   // console.log('请求失败，去登陆');
-      //   // setTimeout(() => {
-      //   //可能登录失败 跳转登录地址
-      //   // router.push("/" + encodeURIComponent(''));
-      //   alert('系统繁忙，请稍后重试');
-      //   //失败的回调函数
-      //   reject(error)
-      // }
     })
   })
 }
