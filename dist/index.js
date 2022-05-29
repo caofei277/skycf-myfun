@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mySetStorage456 = exports.mySetStorage234 = exports.mytest = exports.test = exports.myRequest = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.myRequest = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -100,69 +100,3 @@ function myRequest(url, params, reqType) {
     return '这是request方法';
 }
 exports.myRequest = myRequest;
-/**
- * test
- */
-function test() {
-    // console.log('这是测试方法')
-    return true;
-}
-exports.test = test;
-/**
- * localstorage 删除
- * @param key
- */
-function mytest(key) {
-    return key;
-}
-exports.mytest = mytest;
-/**
- * localstorage 存储方法(可设置有效期)
- * @param key key 键
- * @param value value 值，
- * @param expired expired 过期时间，以秒为单位，非必须
- * @param isFullExpired  isFullExpired 过期时间是否为完整过期时间 如果不是 则需要以当前时间加过期时间  如果是完整时间 则说明是完整到期时间戳 则直接使用即可
- */
-function mySetStorage234(key, value, expired, isFullExpired) {
-    if (expired === void 0) { expired = 0; }
-    if (isFullExpired === void 0) { isFullExpired = false; }
-    localStorage.setItem(key, JSON.stringify(value));
-    if (expired) {
-        if (!isFullExpired) {
-            localStorage.setItem("".concat(key, "__expires__"), (Date.now() / 1000 + expired).toString());
-        }
-        else {
-            localStorage.setItem("".concat(key, "__expires__"), expired.toString());
-        }
-    }
-    else {
-        localStorage.removeItem("".concat(key, "__expires__"));
-    }
-    return value;
-}
-exports.mySetStorage234 = mySetStorage234;
-/**
- * localstorage 存储方法(可设置有效期)
- * @param key key 键
- * @param value value 值，
- * @param expired expired 过期时间，以秒为单位，非必须
- * @param isFullExpired  isFullExpired 过期时间是否为完整过期时间 如果不是 则需要以当前时间加过期时间  如果是完整时间 则说明是完整到期时间戳 则直接使用即可
- */
-function mySetStorage456(key, value, expired, isFullExpired) {
-    if (expired === void 0) { expired = 0; }
-    if (isFullExpired === void 0) { isFullExpired = false; }
-    localStorage.setItem(key, JSON.stringify(value));
-    if (expired) {
-        if (!isFullExpired) {
-            localStorage.setItem("".concat(key, "__expires__"), (Date.now() / 1000 + expired).toString());
-        }
-        else {
-            localStorage.setItem("".concat(key, "__expires__"), expired.toString());
-        }
-    }
-    else {
-        localStorage.removeItem("".concat(key, "__expires__"));
-    }
-    return value;
-}
-exports.mySetStorage456 = mySetStorage456;
