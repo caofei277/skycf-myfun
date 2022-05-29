@@ -77,9 +77,9 @@ export function myDelStorage(key: string) {
  * @param params  请求参数
  * @param reqType 请求方法
  */
-export function myRequest(url: any, params:object = {}, reqType = 'post') {
+export function myRequest(url: any, params:object = {}, reqType = 'post') : any {
   // 发送请求
-  return new Promise((resolve, reject) => {
+  return new Promise<any>((resolve, reject) => {
 
     let promise;
 
