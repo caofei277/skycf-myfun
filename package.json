@@ -1,13 +1,16 @@
 {
   "name": "@skycf/myfun",
-  "version": "0.4.8",
+  "version": "0.4.11",
   "description": "我的函数库",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublish": "echo '我要运行啦' && npm run build",
     "test": "mocha --reporter spec",
-    "build": "tsc"
+    "build": "tsc",
+    "mypub1": "npm version major && npm run build && npm publish",
+    "mypub2": "npm version minor && npm run build && npm publish",
+    "mypub3": "npm version patch && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
