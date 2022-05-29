@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useMessage } from 'naive-ui'
+import {ElMessage} from "element-plus";
 
 /**
  * localstorage 存储方法(可设置有效期)
@@ -68,7 +69,7 @@ export function myDelStorage(key: string) {
   localStorage.removeItem(key);
   localStorage.removeItem(`${key}__expires__`);
   const message = useMessage();
-  message.success('删除成功');
+  ElMessage.success('删除成功');
   return true;
 }
 
