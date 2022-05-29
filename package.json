@@ -1,6 +1,6 @@
 {
   "name": "@skycf/myfun",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "我的函数库",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,7 +24,6 @@
     "typescript": "^4.7.2"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "vue": "next"
+    "axios": "^0.27.2"
   }
 }
