@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.req = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
-var element_plus_1 = require("element-plus");
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -59,7 +58,6 @@ exports.myGetStorage = myGetStorage;
 function myDelStorage(key) {
     localStorage.removeItem(key);
     localStorage.removeItem("".concat(key, "__expires__"));
-    element_plus_1.ElMessage.success('删除成功');
     return true;
 }
 exports.myDelStorage = myDelStorage;
@@ -85,10 +83,10 @@ function req(url, params, reqType, alertMsg) {
                 // }
             }
             else if (response.data.code !== 200 && alertMsg) {
-                element_plus_1.ElMessage.warning(response.data.msg);
+                // ElMessage.warning(response.data.msg)
             }
             else if (response.data.code === 200 && response.data.msg !== '') {
-                element_plus_1.ElMessage.success(response.data.msg);
+                // ElMessage.success(response.data.msg)
             }
             resolve(response.data);
         }).catch(function (error) {
