@@ -8,9 +8,9 @@
     "prepublish": "echo '我要运行啦' && npm run build",
     "test": "mocha --reporter spec",
     "build": "tsc",
-    "mypub1": "npm version major && npm run build && git add . && git commit -m && npm publish",
-    "mypub2": "npm version minor && npm run build && git add . && git commit -m && npm publish",
-    "mypub3": "npm version patch && npm run build && git add . && git commit -m && npm publish"
+    "mypub1": "npm version major && npm run build && npm publish && git add . && git commit -m",
+    "mypub2": "npm version minor && npm run build && npm publish && git add . && git commit -m",
+    "mypub3": "npm version patch && npm run build && npm publish && git add . && git commit -m"
   },
   "repository": {
     "type": "git",
