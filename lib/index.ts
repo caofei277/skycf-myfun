@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useMessage } from 'naive-ui'
 import {ElMessage} from "element-plus";
 
 /**
@@ -68,7 +67,6 @@ export function myGetStorage(key: string)  {
 export function myDelStorage(key: string) {
   localStorage.removeItem(key);
   localStorage.removeItem(`${key}__expires__`);
-  const message = useMessage();
   ElMessage.success('删除成功');
   return true;
 }
@@ -76,7 +74,6 @@ export function myDelStorage(key: string) {
 
 
 export function req(url: any, params:object = {openid: '', token_id: ''}, reqType = 'post', alertMsg = true){
-  const message = useMessage();
   // 发送请求
   return new Promise((resolve, reject) => {
 
@@ -99,11 +96,9 @@ export function req(url: any, params:object = {openid: '', token_id: ''}, reqTyp
         return;
         // }
       }else if(response.data.code !== 200 && alertMsg){
-        // ElMessage.warning(response.data.msg)
-        message.warning(response.data.msg);
+        ElMessage.warning(response.data.msg)
       }else if(response.data.code === 200 && response.data.msg !== ''){
-        // ElMessage.success(response.data.msg)
-        message.success(response.data.msg);
+        ElMessage.success(response.data.msg)
       }
       resolve(response.data)
     }).catch((error: any) => {

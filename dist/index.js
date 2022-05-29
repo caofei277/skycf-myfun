@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.req = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
-var naive_ui_1 = require("naive-ui");
+var element_plus_1 = require("element-plus");
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -59,8 +59,7 @@ exports.myGetStorage = myGetStorage;
 function myDelStorage(key) {
     localStorage.removeItem(key);
     localStorage.removeItem("".concat(key, "__expires__"));
-    var message = (0, naive_ui_1.useMessage)();
-    message.success('删除成功');
+    element_plus_1.ElMessage.success('删除成功');
     return true;
 }
 exports.myDelStorage = myDelStorage;
@@ -68,7 +67,6 @@ function req(url, params, reqType, alertMsg) {
     if (params === void 0) { params = { openid: '', token_id: '' }; }
     if (reqType === void 0) { reqType = 'post'; }
     if (alertMsg === void 0) { alertMsg = true; }
-    var message = (0, naive_ui_1.useMessage)();
     // 发送请求
     return new Promise(function (resolve, reject) {
         var promise;
@@ -87,12 +85,10 @@ function req(url, params, reqType, alertMsg) {
                 // }
             }
             else if (response.data.code !== 200 && alertMsg) {
-                // ElMessage.warning(response.data.msg)
-                message.warning(response.data.msg);
+                element_plus_1.ElMessage.warning(response.data.msg);
             }
             else if (response.data.code === 200 && response.data.msg !== '') {
-                // ElMessage.success(response.data.msg)
-                message.success(response.data.msg);
+                element_plus_1.ElMessage.success(response.data.msg);
             }
             resolve(response.data);
         }).catch(function (error) {
