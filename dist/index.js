@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.request = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.myRequest = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 /**
  * localstorage 存储方法(可设置有效期)
@@ -67,7 +67,7 @@ exports.myDelStorage = myDelStorage;
  * @param params  请求参数
  * @param reqType 请求方法
  */
-function request(url, params, reqType) {
+function myRequest(url, params, reqType) {
     if (params === void 0) { params = {}; }
     if (reqType === void 0) { reqType = 'post'; }
     // 发送请求
@@ -87,4 +87,4 @@ function request(url, params, reqType) {
         });
     });
 }
-exports.request = request;
+exports.myRequest = myRequest;
