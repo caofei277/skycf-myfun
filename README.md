@@ -1,7 +1,7 @@
 # @skycf/myfun
 
-[![Build Status](https://travis-ci.org/youthcity/ts-hi.svg?branch=master)](https://travis-ci.org/youthcity/ts-hi)
-[![Coverage Status](https://coveralls.io/repos/github/youthcity/ts-hi/badge.svg)](https://coveralls.io/github/youthcity/ts-hi)
+[![Build Status](https://travis-ci.org/youthcity/ts-hi.svg?branch=master)](https://travis-ci.org/@skycf/myfun)
+[![Coverage Status](https://coveralls.io/repos/github/youthcity/ts-hi/badge.svg)](https://coveralls.io/github/@skycf/myfun)
 
 ## Install
 
