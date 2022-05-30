@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.myRequest = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
+// @ts-ignore
+var sha1_1 = require("sha1");
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -62,17 +64,93 @@ function myDelStorage(key) {
 }
 exports.myDelStorage = myDelStorage;
 /**
+ * 获得字符串实际长度，中文2，英文1
+ * @param str 要获得长度的字符串
+ */
+function getStrLength(str) {
+    var realLength = 0;
+    var len = str.length;
+    var charCode = -1;
+    for (var i = 0; i < len; i++) {
+        charCode = str.charCodeAt(i);
+        if (charCode >= 0 && charCode <= 128) {
+            realLength += 1;
+        }
+        else {
+            realLength += 2;
+        }
+    }
+    return realLength;
+}
+exports.getStrLength = getStrLength;
+;
+/**
+ * 拷贝对象
+ * @param obj
+ */
+function myCopyObj(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+exports.myCopyObj = myCopyObj;
+/**
+ * json对象排序
+ * @param json
+ */
+function myJsonSort(json) {
+    var arr = [];
+    for (var key in json) {
+        arr.push(key);
+    }
+    arr = arr.sort();
+    var jsonTmp = {};
+    for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
+        var v = arr_1[_i];
+        // @ts-ignore
+        jsonTmp[v] = json[v];
+    }
+    return jsonTmp;
+}
+exports.myJsonSort = myJsonSort;
+/**
+ * 获取签名
+ * @param params
+ * @param token
+ */
+function myGetSign(params) {
+    if (params === void 0) { params = {}; }
+    params = myJsonSort(params);
+    var signStr = '';
+    for (var key in params) {
+        if (key !== 'file') {
+            signStr += params[key];
+        }
+    }
+    var signTmp = (0, sha1_1.default)(signStr);
+    var token = '';
+    try {
+        token = typeof (myGetStorage('userInfo').token) === 'undefined' || myGetStorage('userInfo').token === null ? '' : myGetStorage('userInfo').token;
+    }
+    catch (e) {
+        token = '';
+    }
+    return (0, sha1_1.default)(signTmp + token);
+}
+exports.myGetSign = myGetSign;
+/**
  * 公共axios请求方法
  * @param url  请求路由
  * @param params  请求参数
  * @param reqType 请求方法
  */
 function myRequest(url, params, reqType) {
-    if (params === void 0) { params = {}; }
+    if (params === void 0) { params = { mySign: '' }; }
     if (reqType === void 0) { reqType = 'post'; }
     // 发送请求
     return new Promise(function (resolve, reject) {
         var promise;
+        if (!(typeof (params.mySign) === 'undefined' || params.mySign === null)) {
+            params.mySign = myGetSign(params);
+        }
         promise = (0, axios_1.default)({
             method: reqType,
             url: url,
