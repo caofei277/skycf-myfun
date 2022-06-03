@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mySha1 = exports.myUtf8Encode = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
-// @ts-ignore
-var sha1_1 = require("crypto-js/sha1");
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -125,7 +123,7 @@ function myGetSign(params) {
             signStr += params[key];
         }
     }
-    var signTmp = (0, sha1_1.default)(signStr);
+    var signTmp = mySha1(signStr);
     var token = '';
     try {
         token = typeof (myGetStorage('userInfo').token) === 'undefined' || myGetStorage('userInfo').token === null ? '' : myGetStorage('userInfo').token;
@@ -133,7 +131,7 @@ function myGetSign(params) {
     catch (e) {
         token = '';
     }
-    return (0, sha1_1.default)(signTmp + token);
+    return mySha1(signTmp + token);
 }
 exports.myGetSign = myGetSign;
 /**
