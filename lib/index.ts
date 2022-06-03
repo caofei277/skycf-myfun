@@ -132,7 +132,7 @@ export function myGetSign(params: any = {}) :string{
   params = myJsonSort(params);
   let signStr = '';
   for (const key in params) {
-    if (key !== 'file') {
+    if (key !== 'file' && key !== 'mySign') {
       signStr += params[key];
     }
   }
