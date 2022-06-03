@@ -190,11 +190,10 @@ export function myRequest(url: any, params = {mySign: ''}, reqType = 'post'): an
  */
 export function handleParamsEmpty(params: any){
   let paramsTmp: any = {};
-  for (const key in params){
+  for (let key in params){
     if(key !== 'file'){
       paramsTmp[key] = typeof(params[key]) === 'undefined' || params[key] === null ? '' :  typeof(params[key]) === 'object' ? JSON.stringify(params[key]) : params[key];
     }else{
-
       paramsTmp.file = params[key];
     }
   }
