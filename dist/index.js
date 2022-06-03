@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 // @ts-ignore
-var sha1_1 = require("sha1");
+var sha1_1 = require("crypto-js/sha1");
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
