@@ -39,9 +39,14 @@ export declare function myGetSign(params?: any): string;
  * @param params  请求参数
  * @param reqType 请求方法
  */
+interface requestData {
+    code: number;
+    msg: string;
+    data: object;
+}
 export declare function myRequest(url: any, params?: {
     mySign: string;
-}, reqType?: string): any;
+}, reqType?: string): Promise<requestData>;
 /**
  * 设置参数为undefined 或者 null的 时候 值改为 空字符串
  * @param params
@@ -53,3 +58,4 @@ export declare function myUtf8Encode(argString: any): string;
  * - based on sha1 from http://phpjs.org/functions/sha1:512 (MIT / GPL v2)
  ************************************************************/
 export declare function mySha1(str: any): string;
+export {};

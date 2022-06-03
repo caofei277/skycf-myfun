@@ -142,12 +142,6 @@ function myGetSign(params) {
     return mySha1(signTmp + token);
 }
 exports.myGetSign = myGetSign;
-/**
- * 公共axios请求方法
- * @param url  请求路由
- * @param params  请求参数
- * @param reqType 请求方法
- */
 function myRequest(url, params, reqType) {
     if (params === void 0) { params = { mySign: '' }; }
     if (reqType === void 0) { reqType = 'post'; }

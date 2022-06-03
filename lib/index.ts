@@ -171,13 +171,18 @@ interface requestData {
   data: object
 }
 
-export function myRequest(url: any, params = {mySign: ''}, reqType = 'post'): Promise<requestData> {
+export function myRequest(url: any, params = {token_id: 0, mySign: ''}, reqType = 'post'): Promise<requestData> {
   // 发送请求
   return new Promise<any>((resolve, reject) => {
 
     let promise;
 
     if(!(typeof(params.mySign) === 'undefined' || params.mySign === null)){
+      try{
+        params.token_id = typeof(myGetStorage('userInfo').token_id) === 'undefined' || myGetStorage('userInfo').token_id === null ? 0 : myGetStorage('userInfo').token_id;
+      }catch (e) {
+        params.token_id = 0;
+      }
       params.mySign = myGetSign(params);
     }
 
