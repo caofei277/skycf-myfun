@@ -42,3 +42,9 @@ export declare function myGetSign(params?: any): string;
 export declare function myRequest(url: any, params?: {
     mySign: string;
 }, reqType?: string): any;
+export declare function myUtf8Encode(argString: any): string;
+/************************************************************
+ * sha1
+ * - based on sha1 from http://phpjs.org/functions/sha1:512 (MIT / GPL v2)
+ ************************************************************/
+export declare function mySha1(str: any): string;

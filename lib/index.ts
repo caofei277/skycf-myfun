@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// @ts-ignore
-import sha1 from 'crypto-js/sha1';
 
 
 
@@ -140,7 +138,7 @@ export function myGetSign(params: any = {}) :string{
   }
 
 
-  const signTmp = sha1(signStr);
+  const signTmp = mySha1(signStr);
   let token = '';
   try{
     token = typeof(myGetStorage('userInfo').token) === 'undefined' || myGetStorage('userInfo').token === null ? '' : myGetStorage('userInfo').token;
@@ -148,7 +146,7 @@ export function myGetSign(params: any = {}) :string{
     token = '';
   }
 
-  return sha1(signTmp + token);
+  return mySha1(signTmp + token);
 }
 
 
