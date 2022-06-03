@@ -1,6 +1,9 @@
 import axios from "axios";
+
 // @ts-ignore
-import sha1 from "sha1";
+import sha1 from 'crypto-js/sha1';
+
+
 
 /**
  * localstorage 存储方法(可设置有效期)
