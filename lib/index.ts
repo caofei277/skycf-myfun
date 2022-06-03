@@ -129,6 +129,7 @@ export function myJsonSort(json: any) {
  * @param token
  */
 export function myGetSign(params: any = {}) :string{
+  params = handleParamsEmpty(myCopyObj(params));
   params = myJsonSort(params);
   let signStr = '';
   for (const key in params) {

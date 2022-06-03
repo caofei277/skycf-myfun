@@ -119,7 +119,7 @@ function myGetSign(params) {
     params = myJsonSort(params);
     var signStr = '';
     for (var key in params) {
-        if (key !== 'file' && key !== 'mySign') {
+        if (key !== 'file' && key !== 'mySign' && key !== 'mywd') {
             signStr += params[key];
         }
     }
@@ -130,6 +130,13 @@ function myGetSign(params) {
     }
     catch (e) {
         token = '';
+    }
+    if (typeof params.mywd !== 'undefined' && params.mywd !== '') {
+        console.log('首次拼接', signStr);
+        console.log('首次加密', signTmp);
+        console.log('token', token);
+        console.log('二次拼接', signTmp + token);
+        console.log('二次加密', mySha1(signTmp + token));
     }
     return mySha1(signTmp + token);
 }
