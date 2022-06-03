@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mySha1 = exports.myUtf8Encode = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.mySha1 = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 /**
  * localstorage 存储方法(可设置有效期)
@@ -164,6 +164,23 @@ function myRequest(url, params, reqType) {
     });
 }
 exports.myRequest = myRequest;
+/**
+ * 设置参数为undefined 或者 null的 时候 值改为 空字符串
+ * @param params
+ */
+function handleParamsEmpty(params) {
+    var paramsTmp = {};
+    for (var key in params) {
+        if (key !== 'file') {
+            paramsTmp[key] = typeof (params[key]) === 'undefined' || params[key] === null ? '' : typeof (params[key]) === 'object' ? JSON.stringify(params[key]) : params[key];
+        }
+        else {
+            paramsTmp.file = params[key];
+        }
+    }
+    return paramsTmp;
+}
+exports.handleParamsEmpty = handleParamsEmpty;
 /*
     * UTF-8 encoding
     */

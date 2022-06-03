@@ -42,6 +42,11 @@ export declare function myGetSign(params?: any): string;
 export declare function myRequest(url: any, params?: {
     mySign: string;
 }, reqType?: string): any;
+/**
+ * 设置参数为undefined 或者 null的 时候 值改为 空字符串
+ * @param params
+ */
+export declare function handleParamsEmpty(params: any): any;
 export declare function myUtf8Encode(argString: any): string;
 /************************************************************
  * sha1
