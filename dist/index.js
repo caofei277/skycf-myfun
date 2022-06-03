@@ -116,6 +116,7 @@ exports.myJsonSort = myJsonSort;
  */
 function myGetSign(params) {
     if (params === void 0) { params = {}; }
+    params = handleParamsEmpty(myCopyObj(params));
     params = myJsonSort(params);
     var signStr = '';
     for (var key in params) {
