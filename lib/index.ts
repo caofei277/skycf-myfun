@@ -165,7 +165,13 @@ export function myGetSign(params: any = {}) :string{
  * @param params  请求参数
  * @param reqType 请求方法
  */
-export function myRequest(url: any, params = {mySign: ''}, reqType = 'post'): any {
+interface requestData {
+  code: number,
+  msg: string,
+  data: object
+}
+
+export function myRequest(url: any, params = {mySign: ''}, reqType = 'post'): Promise<requestData> {
   // 发送请求
   return new Promise<any>((resolve, reject) => {
 
