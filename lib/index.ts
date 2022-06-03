@@ -334,6 +334,3 @@ export function mySha1(str: any) {
 
   return temp.toLowerCase();
 }
-
-
-
