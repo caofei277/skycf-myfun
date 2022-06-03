@@ -184,6 +184,24 @@ export function myRequest(url: any, params = {mySign: ''}, reqType = 'post'): an
 }
 
 
+/**
+ * 设置参数为undefined 或者 null的 时候 值改为 空字符串
+ * @param params
+ */
+export function handleParamsEmpty(params: any){
+  let paramsTmp: any = {};
+  for (const key in params){
+    if(key !== 'file'){
+      paramsTmp[key] = typeof(params[key]) === 'undefined' || params[key] === null ? '' :  typeof(params[key]) === 'object' ? JSON.stringify(params[key]) : params[key];
+    }else{
+
+      paramsTmp.file = params[key];
+    }
+  }
+  return paramsTmp;
+}
+
+
 /*
     * UTF-8 encoding
     */

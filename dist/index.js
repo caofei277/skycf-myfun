@@ -119,7 +119,7 @@ function myGetSign(params) {
     params = myJsonSort(params);
     var signStr = '';
     for (var key in params) {
-        if (key !== 'file') {
+        if (key !== 'file' && key !== 'mySign') {
             signStr += params[key];
         }
     }
