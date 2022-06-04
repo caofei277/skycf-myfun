@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mySha1 = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
+// @ts-ignore
+var qs_1 = require("qs");
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -160,7 +162,7 @@ function myRequest(url, params, reqType) {
         promise = (0, axios_1.default)({
             method: reqType,
             url: url,
-            data: params
+            data: reqType === 'post' ? qs_1.default.stringify(params) : params
         });
         promise.then(function (response) {
             //成功的回调函数
