@@ -45,6 +45,7 @@ interface requestData {
     data: object;
 }
 export declare function myRequest(url: any, params?: {
+    token_id: number;
     mySign: string;
 }, reqType?: string): Promise<requestData>;
 /**

@@ -1,5 +1,6 @@
 import axios from "axios";
-
+// @ts-ignore
+import qs from "qs";
 
 
 
@@ -190,7 +191,7 @@ export function myRequest(url: any, params = {token_id: 0, mySign: ''}, reqType 
     promise = axios({
       method: reqType,
       url: url,
-      data: params
+      data: reqType === 'post' ? qs.stringify(params) : params
     });
 
     promise.then((response: { data: any; }) => {

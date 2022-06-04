@@ -143,12 +143,18 @@ function myGetSign(params) {
 }
 exports.myGetSign = myGetSign;
 function myRequest(url, params, reqType) {
-    if (params === void 0) { params = { mySign: '' }; }
+    if (params === void 0) { params = { token_id: 0, mySign: '' }; }
     if (reqType === void 0) { reqType = 'post'; }
     // 发送请求
     return new Promise(function (resolve, reject) {
         var promise;
         if (!(typeof (params.mySign) === 'undefined' || params.mySign === null)) {
+            try {
+                params.token_id = typeof (myGetStorage('userInfo').token_id) === 'undefined' || myGetStorage('userInfo').token_id === null ? 0 : myGetStorage('userInfo').token_id;
+            }
+            catch (e) {
+                params.token_id = 0;
+            }
             params.mySign = myGetSign(params);
         }
         promise = (0, axios_1.default)({
