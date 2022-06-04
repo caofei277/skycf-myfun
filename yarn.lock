@@ -38,6 +38,7 @@ __metadata:
   dependencies:
     axios: ^0.27.2
     chai: ^4.3.6
+    js-md5: ^0.7.3
     mocha: ^10.0.0
     qs: ^6.10.3
     typescript: ^4.7.2
@@ -875,6 +876,13 @@ __metadata:
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
   checksum: 26bf6c5480dda5161c820c5b5c751ae1e766c587b1f951ea3fcfc973bafb7831ae5b54a31a69bd670220e42e99ec154475025a468eae58ea262f813fdc8d1c62
+  languageName: node
+  linkType: hard
+
+"js-md5@npm:^0.7.3":
+  version: 0.7.3
+  resolution: "js-md5@npm:0.7.3"
+  checksum: 1ed9f7f23a2ad224fc159ba7e074617d20e6b501ea96319091ae4c7cfe722cc472c4e05366fd25708311fb66dc2deb1b82e51c730f9ccd910e64b67ba36d3a75
   languageName: node
   linkType: hard
 

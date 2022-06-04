@@ -1,6 +1,7 @@
 import axios from "axios";
 // @ts-ignore
 import qs from "qs";
+import md5 from 'js-md5';
 
 
 
@@ -140,7 +141,8 @@ export function myGetSign(params: any = {}) :string{
   }
 
 
-  const signTmp = mySha1(signStr);
+  // const signTmp = mySha1(signStr);
+  const signTmp = md5(signStr);
   let token = '';
   try{
     token = typeof(myGetStorage('userInfo').token) === 'undefined' || myGetStorage('userInfo').token === null ? '' : myGetStorage('userInfo').token;
@@ -153,10 +155,12 @@ export function myGetSign(params: any = {}) :string{
     console.log('首次加密', signTmp)
     console.log('token', token)
     console.log('二次拼接', signTmp + token)
-    console.log('二次加密', mySha1(signTmp + token))
+    // console.log('二次加密', mySha1(signTmp + token))
+    console.log('二次加密', md5(signTmp + token));
   }
 
-  return mySha1(signTmp + token);
+  // return mySha1(signTmp + token);
+  return md5(signTmp + token);
 }
 
 
