@@ -175,7 +175,7 @@ interface requestData {
   data: object
 }
 
-export function myRequest(url: any, params = {token_id: 0, mySign: ''}, reqType = 'post'): Promise<requestData> {
+export function myRequest(url: any, params = {token_id: 0, mySign: '', token: ''}, reqType = 'post'): Promise<requestData> {
   // 发送请求
   return new Promise<any>((resolve, reject) => {
 
@@ -183,6 +183,7 @@ export function myRequest(url: any, params = {token_id: 0, mySign: ''}, reqType 
 
     if(!(typeof(params.mySign) === 'undefined' || params.mySign === null)){
       params.mySign = myGetSign(params);
+      Reflect.deleteProperty(params,"token");
     }
 
 

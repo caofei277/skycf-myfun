@@ -33,11 +33,6 @@ exports.mySetStorage = mySetStorage;
    * @ param {String} 	expired 存储时为非必须字段，所以有可能取不到，默认为 Date.now+1
    */
 function myGetStorage(key) {
-    //获取用户信息
-    uni.showToast({
-        title: '提交成功123',
-        duration: 2000
-    });
     var now = Date.now() / 1000;
     var expired = Number(localStorage.getItem("".concat(key, "__expires__"))) || now + 1;
     if (now >= expired) {
@@ -125,7 +120,7 @@ function myGetSign(params) {
     params = myJsonSort(params);
     var signStr = '';
     for (var key in params) {
-        if (key !== 'file' && key !== 'mySign' && key !== 'mywd') {
+        if (key !== 'file' && key !== 'mySign' && key !== 'mywd' && key !== 'token') {
             signStr += params[key];
         }
     }
@@ -133,7 +128,7 @@ function myGetSign(params) {
     var signTmp = myMd5(signStr);
     var token = '';
     try {
-        token = typeof (myGetStorage('userInfo').token) === 'undefined' || myGetStorage('userInfo').token === null ? '' : myGetStorage('userInfo').token;
+        token = params.token;
     }
     catch (e) {
         token = '';
@@ -157,12 +152,6 @@ function myRequest(url, params, reqType) {
     return new Promise(function (resolve, reject) {
         var promise;
         if (!(typeof (params.mySign) === 'undefined' || params.mySign === null)) {
-            try {
-                params.token_id = typeof (myGetStorage('userInfo').token_id) === 'undefined' || myGetStorage('userInfo').token_id === null ? 0 : myGetStorage('userInfo').token_id;
-            }
-            catch (e) {
-                params.token_id = 0;
-            }
             params.mySign = myGetSign(params);
         }
         promise = (0, axios_1.default)({
