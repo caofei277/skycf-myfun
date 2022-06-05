@@ -33,6 +33,11 @@ exports.mySetStorage = mySetStorage;
    * @ param {String} 	expired 存储时为非必须字段，所以有可能取不到，默认为 Date.now+1
    */
 function myGetStorage(key) {
+    //获取用户信息
+    uni.showToast({
+        title: '提交成功123',
+        duration: 2000
+    });
     var now = Date.now() / 1000;
     var expired = Number(localStorage.getItem("".concat(key, "__expires__"))) || now + 1;
     if (now >= expired) {

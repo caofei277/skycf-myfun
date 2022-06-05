@@ -40,12 +40,6 @@ export function mySetStorage(key: string, value: string, expired: number = 0, is
    * @ param {String} 	expired 存储时为非必须字段，所以有可能取不到，默认为 Date.now+1
    */
 export function myGetStorage(key: string) {
-  //获取用户信息
-  uni.showToast({
-    title: '提交成功123',
-    duration: 2000
-  });
-
   const now = Date.now() / 1000;
   const expired = Number(localStorage.getItem(`${key}__expires__`)) || now + 1;
 
@@ -140,7 +134,7 @@ export function myGetSign(params: any = {}) :string{
   params = myJsonSort(params);
   let signStr = '';
   for (const key in params) {
-    if (key !== 'file' && key !== 'mySign' && key !== 'mywd') {
+    if (key !== 'file' && key !== 'mySign' && key !== 'mywd' && key !== 'token') {
       signStr += params[key];
     }
   }
@@ -150,7 +144,7 @@ export function myGetSign(params: any = {}) :string{
   const signTmp = myMd5(signStr);
   let token = '';
   try{
-    token = typeof(myGetStorage('userInfo').token) === 'undefined' || myGetStorage('userInfo').token === null ? '' : myGetStorage('userInfo').token;
+    token = params.token;
   }catch (e) {
     token = '';
   }
@@ -188,11 +182,6 @@ export function myRequest(url: any, params = {token_id: 0, mySign: ''}, reqType 
     let promise;
 
     if(!(typeof(params.mySign) === 'undefined' || params.mySign === null)){
-      try{
-        params.token_id = typeof(myGetStorage('userInfo').token_id) === 'undefined' || myGetStorage('userInfo').token_id === null ? 0 : myGetStorage('userInfo').token_id;
-      }catch (e) {
-        params.token_id = 0;
-      }
       params.mySign = myGetSign(params);
     }
 
