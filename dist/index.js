@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.myMd5 = exports.mySha1 = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.myMd5 = exports.mySha1 = exports.myGetRuningPlatform = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 /**
  * localstorage 存储方法(可设置有效期)
@@ -194,6 +194,31 @@ function myUtf8Encode(argString) {
     return decodeURIComponent(encodeURIComponent(argString));
 }
 exports.myUtf8Encode = myUtf8Encode;
+/**
+ * 获取当前运行平台
+ */
+function myGetRuningPlatform() {
+    var ua = navigator.userAgent.toLowerCase();
+    // @ts-ignore
+    if (ua.match(/MicroMessenger/i) === "micromessenger") {
+        return new Promise(function (resolve) {
+            wx.miniProgram.getEnv(function (res) {
+                if (res.miniprogram) {
+                    resolve("wx-mp");
+                }
+                else {
+                    resolve("wx");
+                }
+            });
+        });
+    }
+    else {
+        return new Promise(function (resolve) {
+            resolve("no-wx");
+        });
+    }
+}
+exports.myGetRuningPlatform = myGetRuningPlatform;
 /************************************************************
  * sha1
  * - based on sha1 from http://phpjs.org/functions/sha1:512 (MIT / GPL v2)

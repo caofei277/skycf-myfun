@@ -228,30 +228,82 @@ export function myUtf8Encode(argString: any) {
   return decodeURIComponent(encodeURIComponent(argString));
 }
 
-/**
- * 获取当前运行平台
- */
-export function myGetRuningPlatform(){
-  let ua = navigator.userAgent.toLowerCase();
-  // @ts-ignore
-  if (ua.match(/MicroMessenger/i) === "micromessenger") {
-    return new Promise(resolve => {
-      wx.miniProgram.getEnv(function(res: any) {
-        if (res.miniprogram) {
-          resolve("wx-mp");
-        } else {
-          resolve("wx");
-        }
-      });
-    });
+
+// 判断是否在微信中打开
+export function isWechat(): boolean {
+  const ua = navigator.userAgent.toLowerCase();
+  return /micromessenger/i.test(ua);
+}
+// 判断是否在微博中打开
+export function isWeiBo(): boolean {
+  const ua = navigator.userAgent.toLowerCase();
+  return /WeiBo/i.test(ua);
+}
+// 判断是否在QQ中打开
+export function isQQ(): boolean {
+  const ua = navigator.userAgent.toLowerCase();
+  return /QQ/i.test(ua);
+}
+
+//终端判断：是否是Ios
+export function isIos(){
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.match(/(iphone|ipod|ipad);?/i);
+}
+
+//终端判断：是否是Android
+export function isAndroid(){
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.match(/android|adr/i);
+}
+
+//判断是否在微信小程序中
+export function isMpWeixin(): boolean{
+  const ua = navigator.userAgent.toLowerCase();
+  const isWeixin = ua.indexOf('micromessenger') !== -1;
+  if (isWeixin) {
+    if ((window as any).__wxjs_environment === 'miniprogram') {
+      return true;
+    } else {
+      return false;
+    }
   } else {
-    return new Promise(resolve => {
-      resolve("no-wx");
-    });
+    return false;
+  }
+}
+
+//判断是否在APP中运行
+export function isApp(){
+  const ua = navigator.userAgent.toLowerCase();
+  const isWeixin = ua.indexOf('micromessenger') !== -1;
+  const isInApp = /(^|;\s)app\//.test(ua);
+  if (isWeixin) {
+    return false;
+  } else {
+    if (!isInApp) {
+      return 'browser';
+    } else {
+      return true;
+    }
   }
 }
 
 
+//判断是否在浏览器中运行
+export function isBrowser(){
+  const ua = navigator.userAgent.toLowerCase();
+  const isWeixin = ua.indexOf('micromessenger') !== -1;
+  const isInApp = /(^|;\s)app\//.test(ua);
+  if (isWeixin) {
+    return false;
+  } else {
+    if (!isInApp) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
 
 
 /************************************************************

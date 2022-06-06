@@ -55,6 +55,10 @@ export declare function myRequest(url: any, params?: {
  */
 export declare function handleParamsEmpty(params: any): any;
 export declare function myUtf8Encode(argString: any): string;
+/**
+ * 获取当前运行平台
+ */
+export declare function myGetRuningPlatform(): Promise<unknown>;
 /************************************************************
  * sha1
  * - based on sha1 from http://phpjs.org/functions/sha1:512 (MIT / GPL v2)
