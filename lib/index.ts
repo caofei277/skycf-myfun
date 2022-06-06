@@ -248,13 +248,13 @@ export function isQQ(): boolean {
 //终端判断：是否是Ios
 export function isIos(){
   const ua = navigator.userAgent.toLowerCase();
-  return ua.match(/(iphone|ipod|ipad);?/i);
+  return /(iphone|ipod|ipad);?/i.test(ua);
 }
 
 //终端判断：是否是Android
 export function isAndroid(){
   const ua = navigator.userAgent.toLowerCase();
-  return ua.match(/android|adr/i);
+  return /android|adr/i.test(ua);
 }
 
 //判断是否在微信小程序中
@@ -281,7 +281,7 @@ export function isApp(){
     return false;
   } else {
     if (!isInApp) {
-      return 'browser';
+      return false;
     } else {
       return true;
     }

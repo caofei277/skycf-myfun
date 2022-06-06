@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.myMd5 = exports.mySha1 = exports.myGetRuningPlatform = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.myMd5 = exports.mySha1 = exports.isBrowser = exports.isApp = exports.isMpWeixin = exports.isAndroid = exports.isIos = exports.isQQ = exports.isWeiBo = exports.isWechat = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 /**
  * localstorage 存储方法(可设置有效期)
@@ -194,31 +194,89 @@ function myUtf8Encode(argString) {
     return decodeURIComponent(encodeURIComponent(argString));
 }
 exports.myUtf8Encode = myUtf8Encode;
-/**
- * 获取当前运行平台
- */
-function myGetRuningPlatform() {
+// 判断是否在微信中打开
+function isWechat() {
     var ua = navigator.userAgent.toLowerCase();
-    // @ts-ignore
-    if (ua.match(/MicroMessenger/i) === "micromessenger") {
-        return new Promise(function (resolve) {
-            wx.miniProgram.getEnv(function (res) {
-                if (res.miniprogram) {
-                    resolve("wx-mp");
-                }
-                else {
-                    resolve("wx");
-                }
-            });
-        });
+    return /micromessenger/i.test(ua);
+}
+exports.isWechat = isWechat;
+// 判断是否在微博中打开
+function isWeiBo() {
+    var ua = navigator.userAgent.toLowerCase();
+    return /WeiBo/i.test(ua);
+}
+exports.isWeiBo = isWeiBo;
+// 判断是否在QQ中打开
+function isQQ() {
+    var ua = navigator.userAgent.toLowerCase();
+    return /QQ/i.test(ua);
+}
+exports.isQQ = isQQ;
+//终端判断：是否是Ios
+function isIos() {
+    var ua = navigator.userAgent.toLowerCase();
+    return ua.match(/(iphone|ipod|ipad);?/i);
+}
+exports.isIos = isIos;
+//终端判断：是否是Android
+function isAndroid() {
+    var ua = navigator.userAgent.toLowerCase();
+    return ua.match(/android|adr/i);
+}
+exports.isAndroid = isAndroid;
+//判断是否在微信小程序中
+function isMpWeixin() {
+    var ua = navigator.userAgent.toLowerCase();
+    var isWeixin = ua.indexOf('micromessenger') !== -1;
+    if (isWeixin) {
+        if (window.__wxjs_environment === 'miniprogram') {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     else {
-        return new Promise(function (resolve) {
-            resolve("no-wx");
-        });
+        return false;
     }
 }
-exports.myGetRuningPlatform = myGetRuningPlatform;
+exports.isMpWeixin = isMpWeixin;
+//判断是否在APP中运行
+function isApp() {
+    var ua = navigator.userAgent.toLowerCase();
+    var isWeixin = ua.indexOf('micromessenger') !== -1;
+    var isInApp = /(^|;\s)app\//.test(ua);
+    if (isWeixin) {
+        return false;
+    }
+    else {
+        if (!isInApp) {
+            return 'browser';
+        }
+        else {
+            return true;
+        }
+    }
+}
+exports.isApp = isApp;
+//判断是否在浏览器中运行
+function isBrowser() {
+    var ua = navigator.userAgent.toLowerCase();
+    var isWeixin = ua.indexOf('micromessenger') !== -1;
+    var isInApp = /(^|;\s)app\//.test(ua);
+    if (isWeixin) {
+        return false;
+    }
+    else {
+        if (!isInApp) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+exports.isBrowser = isBrowser;
 /************************************************************
  * sha1
  * - based on sha1 from http://phpjs.org/functions/sha1:512 (MIT / GPL v2)
