@@ -61,6 +61,7 @@ export declare function isQQ(): boolean;
 export declare function isIos(): boolean;
 export declare function isAndroid(): boolean;
 export declare function isMpWeixin(): boolean;
+export declare function isWeixinBrowser(): boolean;
 export declare function isApp(): boolean;
 export declare function isBrowser(): boolean;
 /**
