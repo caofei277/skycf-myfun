@@ -215,13 +215,13 @@ exports.isQQ = isQQ;
 //终端判断：是否是Ios
 function isIos() {
     var ua = navigator.userAgent.toLowerCase();
-    return ua.match(/(iphone|ipod|ipad);?/i);
+    return /(iphone|ipod|ipad);?/i.test(ua);
 }
 exports.isIos = isIos;
 //终端判断：是否是Android
 function isAndroid() {
     var ua = navigator.userAgent.toLowerCase();
-    return ua.match(/android|adr/i);
+    return /android|adr/i.test(ua);
 }
 exports.isAndroid = isAndroid;
 //判断是否在微信小程序中
@@ -251,7 +251,7 @@ function isApp() {
     }
     else {
         if (!isInApp) {
-            return 'browser';
+            return false;
         }
         else {
             return true;

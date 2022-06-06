@@ -58,10 +58,10 @@ export declare function myUtf8Encode(argString: any): string;
 export declare function isWechat(): boolean;
 export declare function isWeiBo(): boolean;
 export declare function isQQ(): boolean;
-export declare function isIos(): RegExpMatchArray | null;
-export declare function isAndroid(): RegExpMatchArray | null;
+export declare function isIos(): boolean;
+export declare function isAndroid(): boolean;
 export declare function isMpWeixin(): boolean;
-export declare function isApp(): boolean | "browser";
+export declare function isApp(): boolean;
 export declare function isBrowser(): boolean;
 /************************************************************
  * sha1
