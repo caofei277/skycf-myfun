@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.myMd5 = exports.mySha1 = exports.isBrowser = exports.isApp = exports.isMpWeixin = exports.isAndroid = exports.isIos = exports.isQQ = exports.isWeiBo = exports.isWechat = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.myMd5 = exports.mySha1 = exports.hideUniTitleView = exports.isBrowser = exports.isApp = exports.isMpWeixin = exports.isAndroid = exports.isIos = exports.isQQ = exports.isWeiBo = exports.isWechat = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 /**
  * localstorage 存储方法(可设置有效期)
@@ -277,6 +277,16 @@ function isBrowser() {
     }
 }
 exports.isBrowser = isBrowser;
+/**
+ * 隐藏uniapp 顶部标题栏
+ */
+function hideUniTitleView() {
+    var pageNav = document.getElementsByTagName("uni-page-head");
+    if (pageNav && pageNav[0]) {
+        pageNav[0].style.display = "none";
+    }
+}
+exports.hideUniTitleView = hideUniTitleView;
 /************************************************************
  * sha1
  * - based on sha1 from http://phpjs.org/functions/sha1:512 (MIT / GPL v2)

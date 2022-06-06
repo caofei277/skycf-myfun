@@ -63,6 +63,10 @@ export declare function isAndroid(): boolean;
 export declare function isMpWeixin(): boolean;
 export declare function isApp(): boolean;
 export declare function isBrowser(): boolean;
+/**
+ * 隐藏uniapp 顶部标题栏
+ */
+export declare function hideUniTitleView(): void;
 /************************************************************
  * sha1
  * - based on sha1 from http://phpjs.org/functions/sha1:512 (MIT / GPL v2)

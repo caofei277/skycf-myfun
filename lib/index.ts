@@ -309,9 +309,9 @@ export function isBrowser(){
  * 隐藏uniapp 顶部标题栏
  */
 export function hideUniTitleView(){
-  let pageNav = document.getElementsByTagName("uni-page-head");
-  if (pageNav && pageNav[0]) {
-    pageNav[0].style.display = "none";
+  let pageNav = <HTMLElement>document.querySelector("uni-page-head");
+  if (pageNav) {
+    pageNav.style.display = "none";
   }
 }
 
