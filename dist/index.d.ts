@@ -47,6 +47,7 @@ interface requestData {
 export declare function myRequest(url: any, params?: {
     token_id: number;
     mySign: string;
+    token: string;
 }, reqType?: string): Promise<requestData>;
 /**
  * 设置参数为undefined 或者 null的 时候 值改为 空字符串

@@ -146,13 +146,14 @@ function myGetSign(params) {
 }
 exports.myGetSign = myGetSign;
 function myRequest(url, params, reqType) {
-    if (params === void 0) { params = { token_id: 0, mySign: '' }; }
+    if (params === void 0) { params = { token_id: 0, mySign: '', token: '' }; }
     if (reqType === void 0) { reqType = 'post'; }
     // 发送请求
     return new Promise(function (resolve, reject) {
         var promise;
         if (!(typeof (params.mySign) === 'undefined' || params.mySign === null)) {
             params.mySign = myGetSign(params);
+            Reflect.deleteProperty(params, "token");
         }
         promise = (0, axios_1.default)({
             method: reqType,

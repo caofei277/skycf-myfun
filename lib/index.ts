@@ -228,6 +228,32 @@ export function myUtf8Encode(argString: any) {
   return decodeURIComponent(encodeURIComponent(argString));
 }
 
+/**
+ * 获取当前运行平台
+ */
+export function myGetRuningPlatform(){
+  let ua = navigator.userAgent.toLowerCase();
+  // @ts-ignore
+  if (ua.match(/MicroMessenger/i) === "micromessenger") {
+    return new Promise(resolve => {
+      wx.miniProgram.getEnv(function(res: any) {
+        if (res.miniprogram) {
+          resolve("wx-mp");
+        } else {
+          resolve("wx");
+        }
+      });
+    });
+  } else {
+    return new Promise(resolve => {
+      resolve("no-wx");
+    });
+  }
+}
+
+
+
+
 /************************************************************
  * sha1
  * - based on sha1 from http://phpjs.org/functions/sha1:512 (MIT / GPL v2)
