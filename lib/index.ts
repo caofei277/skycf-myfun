@@ -272,6 +272,23 @@ export function isMpWeixin(): boolean{
   }
 }
 
+
+//判断是否在微信浏览器中
+export function isWeixinBrowser(): boolean{
+  const ua = navigator.userAgent.toLowerCase();
+  const isWeixin = ua.indexOf('micromessenger') !== -1;
+  if (isWeixin) {
+    if ((window as any).__wxjs_environment === 'miniprogram') {
+      return false;
+    } else {
+      return true;
+    }
+  } else {
+    return false;
+  }
+}
+
+
 //判断是否在APP中运行
 export function isApp(){
   const ua = navigator.userAgent.toLowerCase();
