@@ -153,12 +153,8 @@ function myRequest(url, params, reqType) {
         var promise;
         if (!(typeof (params.mySign) === 'undefined' || params.mySign === null)) {
             params.mySign = myGetSign(params);
-            var paramsTmp = {};
-            for (var key in params) {
-                // @ts-ignore
-                paramsTmp[key] = params[key];
-            }
-            // Reflect.deleteProperty(params,"token");
+            // @ts-ignore
+            params.token = undefined;
         }
         promise = (0, axios_1.default)({
             method: reqType,
