@@ -183,13 +183,8 @@ export function myRequest(url: any, params = {token_id: 0, mySign: '', token: ''
 
     if(!(typeof(params.mySign) === 'undefined' || params.mySign === null)){
       params.mySign = myGetSign(params);
-
-      let paramsTmp = {};
-      for (const key in params) {
-          // @ts-ignore
-        paramsTmp[key] = params[key]
-      }
-      // Reflect.deleteProperty(params,"token");
+      // @ts-ignore
+      params.token = undefined;
     }
 
 
