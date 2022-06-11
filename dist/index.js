@@ -260,19 +260,23 @@ function isWeixinBrowser() {
 exports.isWeixinBrowser = isWeixinBrowser;
 //判断是否在APP中运行
 function isApp() {
-    var ua = navigator.userAgent.toLowerCase();
-    var isWeixin = ua.indexOf('micromessenger') !== -1;
-    var isInApp = /(^|;\s)app\//.test(ua);
-    if (isWeixin) {
-        return false;
+    // const ua = navigator.userAgent.toLowerCase();
+    // const isWeixin = ua.indexOf('micromessenger') !== -1;
+    // const isInApp = /(^|;\s)app\//.test(ua);
+    // if (isWeixin) {
+    //   return false;
+    // } else {
+    //   if (!isInApp) {
+    //     return false;
+    //   } else {
+    //     return true;
+    //   }
+    // }
+    if (typeof navigator === 'undefined') {
+        return true;
     }
     else {
-        if (!isInApp) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return false;
     }
 }
 exports.isApp = isApp;
