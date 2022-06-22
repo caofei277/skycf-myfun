@@ -154,7 +154,7 @@ function myRequest(url, params, reqType) {
         if (!(typeof (params.mySign) === 'undefined' || params.mySign === null)) {
             params.mySign = myGetSign(params);
             // @ts-ignore
-            params.token = undefined;
+            params.token = '';
         }
         promise = (0, axios_1.default)({
             method: reqType,
