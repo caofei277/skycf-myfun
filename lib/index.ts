@@ -184,7 +184,7 @@ export function myRequest(url: any, params = {token_id: 0, mySign: '', token: ''
     if(!(typeof(params.mySign) === 'undefined' || params.mySign === null)){
       params.mySign = myGetSign(params);
       // @ts-ignore
-      params.token = undefined;
+      params.token = '';
     }
 
 
