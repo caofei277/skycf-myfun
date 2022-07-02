@@ -163,23 +163,25 @@ export function myGetSign(params: any = {}) :string{
 }
 
 
-/**
- * 公共axios请求方法
- * @param url  请求路由
- * @param params  请求参数
- * @param reqType 请求方法
- */
+
 interface requestData {
   code: number,
   msg: string,
   data: object
 }
 
-export function myRequest(url: any, params = {token_id: 0, mySign: '', token: ''}, reqType = 'post'): Promise<requestData> {
+/**
+ * 公共axios请求方法
+ * @param url 请求路由
+ * @param params 请求参数
+ * @param method 请求方法
+ * @param reqType 请求类型 1 普通请求  2 formData(上传文件)
+ */
+export function myRequest(url: any, params: any = {token_id: 0, mySign: '', token: ''}, method = 'post', reqType = 1): Promise<requestData> {
   // 发送请求
   return new Promise<any>((resolve, reject) => {
 
-    let promise;
+    let promise: any;
 
     if(!(typeof(params.mySign) === 'undefined' || params.mySign === null)){
       params.mySign = myGetSign(params);
@@ -187,11 +189,33 @@ export function myRequest(url: any, params = {token_id: 0, mySign: '', token: ''
       params.token = '';
     }
 
+    let headers: any;
 
+    if(reqType === 1){
+      headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }else if(reqType === 2){
+      headers = {
+        // 表示上传的是文件,而不是普通的表单数据
+        'Content-Type': 'multipart/form-data'
+      }
+      // 构建FormData对象,通过该对象存储要上传的文件
+      const formData = new FormData();
+
+      // 遍历当前临时文件List,将上传文件添加到FormData对象中
+      for (const key in params) {
+        formData.append(key, params[key])
+      }
+      params = formData
+    }
+
+    // 调用后端接口,发送请求
     promise = axios({
-      method: reqType,
+      method: method,
       url: url,
-      data: params
+      data: params,
+      headers: headers
     });
 
     promise.then((response: { data: any; }) => {
