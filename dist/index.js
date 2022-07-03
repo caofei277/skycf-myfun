@@ -145,9 +145,17 @@ function myGetSign(params) {
     return myMd5(signTmp + token);
 }
 exports.myGetSign = myGetSign;
-function myRequest(url, params, reqType) {
+/**
+ * 公共axios请求方法
+ * @param url 请求路由
+ * @param params 请求参数
+ * @param method 请求方法
+ * @param reqType 请求类型 1 普通请求  2 formData(上传文件)
+ */
+function myRequest(url, params, method, reqType) {
     if (params === void 0) { params = { token_id: 0, mySign: '', token: '' }; }
-    if (reqType === void 0) { reqType = 'post'; }
+    if (method === void 0) { method = 'post'; }
+    if (reqType === void 0) { reqType = 1; }
     // 发送请求
     return new Promise(function (resolve, reject) {
         var promise;
@@ -156,10 +164,31 @@ function myRequest(url, params, reqType) {
             // @ts-ignore
             params.token = '';
         }
+        var headers;
+        if (reqType === 1) {
+            headers = {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            };
+        }
+        else if (reqType === 2) {
+            headers = {
+                // 表示上传的是文件,而不是普通的表单数据
+                'Content-Type': 'multipart/form-data'
+            };
+            // 构建FormData对象,通过该对象存储要上传的文件
+            var formData = new FormData();
+            // 遍历当前临时文件List,将上传文件添加到FormData对象中
+            for (var key in params) {
+                formData.append(key, params[key]);
+            }
+            params = formData;
+        }
+        // 调用后端接口,发送请求
         promise = (0, axios_1.default)({
-            method: reqType,
+            method: method,
             url: url,
-            data: params
+            data: params,
+            headers: headers
         });
         promise.then(function (response) {
             //成功的回调函数

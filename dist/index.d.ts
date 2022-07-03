@@ -33,22 +33,19 @@ export declare function myJsonSort(json: any): {};
  * @param token
  */
 export declare function myGetSign(params?: any): string;
-/**
- * 公共axios请求方法
- * @param url  请求路由
- * @param params  请求参数
- * @param reqType 请求方法
- */
 interface requestData {
     code: number;
     msg: string;
     data: object;
 }
-export declare function myRequest(url: any, params?: {
-    token_id: number;
-    mySign: string;
-    token: string;
-}, reqType?: string): Promise<requestData>;
+/**
+ * 公共axios请求方法
+ * @param url 请求路由
+ * @param params 请求参数
+ * @param method 请求方法
+ * @param reqType 请求类型 1 普通请求  2 formData(上传文件)
+ */
+export declare function myRequest(url: any, params?: any, method?: string, reqType?: number): Promise<requestData>;
 /**
  * 设置参数为undefined 或者 null的 时候 值改为 空字符串
  * @param params
