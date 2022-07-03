@@ -167,7 +167,7 @@ function myRequest(url, params, method, reqType) {
         var headers;
         if (reqType === 1) {
             headers = {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json;charset=UTF-8'
             };
         }
         else if (reqType === 2) {
