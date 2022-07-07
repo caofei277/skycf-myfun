@@ -71,4 +71,9 @@ export declare function hideUniTitleView(): void;
  ************************************************************/
 export declare function mySha1(str: any): string;
 export declare function myMd5(string: string): string;
+/**
+ * 货币大写转换
+ * @param money
+ */
+export declare function myCurrencyToCapital(money: any): string;
 export {};
