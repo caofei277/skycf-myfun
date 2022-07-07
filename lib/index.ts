@@ -718,7 +718,7 @@ export function myMd5(string: string){
  * 货币大写转换
  * @param money
  */
-function myCurrencyToCapital(money: any) {
+export function myCurrencyToCapital(money: any) {
   //汉字的数字
   let cnNums = new Array('零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖');
   //基本单位
