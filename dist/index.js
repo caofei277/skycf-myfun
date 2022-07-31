@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.myCurrencyToCapital = exports.myMd5 = exports.mySha1 = exports.hideUniTitleView = exports.isBrowser = exports.isApp = exports.isWeixinBrowser = exports.isMpWeixin = exports.isAndroid = exports.isIos = exports.isQQ = exports.isWeiBo = exports.isWechat = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.myMathAdd = exports.myCurrencyToCapital = exports.myMd5 = exports.mySha1 = exports.hideUniTitleView = exports.isBrowser = exports.isApp = exports.isWeixinBrowser = exports.isMpWeixin = exports.isAndroid = exports.isIos = exports.isQQ = exports.isWeiBo = exports.isWechat = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 /**
  * localstorage 存储方法(可设置有效期)
@@ -735,3 +735,15 @@ function myCurrencyToCapital(money) {
     return chineseStr;
 }
 exports.myCurrencyToCapital = myCurrencyToCapital;
+/**
+ * 精确加法
+ * @param num1
+ * @param num2
+ */
+function myMathAdd(num1, num2) {
+    var num1Digits = (num1.toString().split(".")[1] || "").length;
+    var num2Digits = (num2.toString().split(".")[1] || "").length;
+    var baseNum = Math.pow(20, Math.max(num1Digits, num2Digits));
+    return (num1 * baseNum + num2 * baseNum) / baseNum;
+}
+exports.myMathAdd = myMathAdd;

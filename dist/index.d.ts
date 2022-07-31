@@ -76,4 +76,10 @@ export declare function myMd5(string: string): string;
  * @param money
  */
 export declare function myCurrencyToCapital(money: any): string;
+/**
+ * 精确加法
+ * @param num1
+ * @param num2
+ */
+export declare function myMathAdd(num1: number, num2: number): number;
 export {};
