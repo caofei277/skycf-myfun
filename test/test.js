@@ -8,3 +8,5 @@ describe('@skycf/myfun function test', () => {
     expect(result).toString();
   });
 });
+
+

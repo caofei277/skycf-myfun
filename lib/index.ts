@@ -1,6 +1,7 @@
 import axios from "axios";
 // @ts-ignore
 import qs from "qs";
+import * as CryptoJS from 'crypto-js';
 
 
 
@@ -510,6 +511,9 @@ export function mySha1(str: any) {
 
 
 export function myMd5(string: string){
+
+  const md5Hash: string = CryptoJS.MD5(string).toString();
+  return md5Hash
   function md5_RotateLeft(lValue: any, iShiftBits: any) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
   }
