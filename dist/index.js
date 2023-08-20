@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.myMathAdd = exports.myCurrencyToCapital = exports.myMd5 = exports.mySha1 = exports.hideUniTitleView = exports.isBrowser = exports.isApp = exports.isWeixinBrowser = exports.isMpWeixin = exports.isAndroid = exports.isIos = exports.isQQ = exports.isWeiBo = exports.isWechat = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
+var CryptoJS = require("crypto-js");
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -440,6 +441,8 @@ function mySha1(str) {
 }
 exports.mySha1 = mySha1;
 function myMd5(string) {
+    var md5Hash = CryptoJS.MD5(string).toString();
+    return md5Hash;
     function md5_RotateLeft(lValue, iShiftBits) {
         return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
     }
