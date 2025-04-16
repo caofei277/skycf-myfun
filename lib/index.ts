@@ -4,7 +4,6 @@ import qs from "qs";
 import * as CryptoJS from 'crypto-js';
 
 
-
 /**
  * localstorage 存储方法(可设置有效期)
  * @param key key 键
@@ -376,10 +375,18 @@ export function mySha1(str: any) {
 
 
 
-export function myMd5(string: string){
-  const md5Hash: string = CryptoJS.MD5(string).toString();
-  return md5Hash
+export function myMd5(string: string) {
+  // 将字符串转换为 UTF-8 编码的字节数组
+  const encoder = new TextEncoder();
+  const data = encoder.encode(string);
+
+  // 将 Uint8Array 转换为 number[]
+  const dataArray = Array.from(data);
+
+  // 计算 MD5 哈希
+  return CryptoJS.MD5(CryptoJS.lib.WordArray.create(dataArray)).toString();
 }
+
 
 
 /**

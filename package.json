@@ -1,6 +1,6 @@
 {
   "name": "@skycf/myfun",
-  "version": "0.13.3",
+  "version": "0.13.4",
   "description": "我的函数库",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
