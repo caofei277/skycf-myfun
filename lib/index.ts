@@ -135,7 +135,7 @@ export function myGetSign(params: any = {}) :string{
   let signStr = '';
   for (const key in params) {
     if (key !== 'file' && key !== 'mySign' && key !== 'mywd' && key !== 'token') {
-      signStr += params[key];
+      signStr += encodeURIComponent(params[key]);
     }
   }
 
