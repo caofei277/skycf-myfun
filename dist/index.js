@@ -349,8 +349,13 @@ function mySha1(str) {
 }
 exports.mySha1 = mySha1;
 function myMd5(string) {
-    var md5Hash = CryptoJS.MD5(string).toString();
-    return md5Hash;
+    // 将字符串转换为 UTF-8 编码的字节数组
+    var encoder = new TextEncoder();
+    var data = encoder.encode(string);
+    // 将 Uint8Array 转换为 number[]
+    var dataArray = Array.from(data);
+    // 计算 MD5 哈希
+    return CryptoJS.MD5(CryptoJS.lib.WordArray.create(dataArray)).toString();
 }
 exports.myMd5 = myMd5;
 /**
