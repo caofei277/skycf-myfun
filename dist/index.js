@@ -122,7 +122,7 @@ function myGetSign(params) {
     var signStr = '';
     for (var key in params) {
         if (key !== 'file' && key !== 'mySign' && key !== 'mywd' && key !== 'token') {
-            signStr += params[key];
+            signStr += encodeURIComponent(params[key]);
         }
     }
     // const signTmp = mySha1(signStr);

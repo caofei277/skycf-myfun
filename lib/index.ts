@@ -123,6 +123,15 @@ export function myJsonSort(json: any) {
 
 }
 
+/**
+ * 对象转URLSearchParams
+ * @param str
+ */
+export function fixedEncodeURIComponent (str: string) {
+  return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+    return '%' + c.charCodeAt(0).toString(16);
+  });
+}
 
 /**
  * 获取签名
@@ -135,7 +144,7 @@ export function myGetSign(params: any = {}) :string{
   let signStr = '';
   for (const key in params) {
     if (key !== 'file' && key !== 'mySign' && key !== 'mywd' && key !== 'token') {
-      signStr += encodeURIComponent(params[key]);
+      signStr += fixedEncodeURIComponent(params[key]);
     }
   }
 
