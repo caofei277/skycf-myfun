@@ -28,6 +28,11 @@ export declare function myCopyObj(obj: any): any;
  */
 export declare function myJsonSort(json: any): {};
 /**
+ * 对象转URLSearchParams
+ * @param str
+ */
+export declare function fixedEncodeURIComponent(str: string): string;
+/**
  * 获取签名
  * @param params
  * @param token

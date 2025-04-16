@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.myMathAdd = exports.myCurrencyToCapital = exports.myMd5 = exports.mySha1 = exports.hideUniTitleView = exports.isBrowser = exports.isApp = exports.isWeixinBrowser = exports.isMpWeixin = exports.isAndroid = exports.isIos = exports.isQQ = exports.isWeiBo = exports.isWechat = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
+exports.myMathAdd = exports.myCurrencyToCapital = exports.myMd5 = exports.mySha1 = exports.hideUniTitleView = exports.isBrowser = exports.isApp = exports.isWeixinBrowser = exports.isMpWeixin = exports.isAndroid = exports.isIos = exports.isQQ = exports.isWeiBo = exports.isWechat = exports.myUtf8Encode = exports.handleParamsEmpty = exports.myRequest = exports.myGetSign = exports.fixedEncodeURIComponent = exports.myJsonSort = exports.myCopyObj = exports.getStrLength = exports.myDelStorage = exports.myGetStorage = exports.mySetStorage = void 0;
 var axios_1 = require("axios");
 var CryptoJS = require("crypto-js");
 /**
@@ -111,6 +111,16 @@ function myJsonSort(json) {
 }
 exports.myJsonSort = myJsonSort;
 /**
+ * 对象转URLSearchParams
+ * @param str
+ */
+function fixedEncodeURIComponent(str) {
+    return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+        return '%' + c.charCodeAt(0).toString(16);
+    });
+}
+exports.fixedEncodeURIComponent = fixedEncodeURIComponent;
+/**
  * 获取签名
  * @param params
  * @param token
@@ -122,7 +132,7 @@ function myGetSign(params) {
     var signStr = '';
     for (var key in params) {
         if (key !== 'file' && key !== 'mySign' && key !== 'mywd' && key !== 'token') {
-            signStr += encodeURIComponent(params[key]);
+            signStr += fixedEncodeURIComponent(params[key]);
         }
     }
     // const signTmp = mySha1(signStr);
